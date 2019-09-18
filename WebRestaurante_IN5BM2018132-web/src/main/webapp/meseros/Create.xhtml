@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MeserosCreateDlg" widgetVar="MeserosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMeserosTitle}">
+            <h:form id="MeserosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{meserosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_idmeseros}" for="idmeseros" />
+                        <p:inputText id="idmeseros" value="#{meserosController.selected.idmeseros}" title="#{bundle.CreateMeserosTitle_idmeseros}" required="true" requiredMessage="#{bundle.CreateMeserosRequiredMessage_idmeseros}"/>
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{meserosController.selected.nombre}" title="#{bundle.CreateMeserosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{meserosController.selected.apellido}" title="#{bundle.CreateMeserosTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{meserosController.selected.telefono}" title="#{bundle.CreateMeserosTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_idhorario}" for="idhorario" />
+                        <p:selectOneMenu id="idhorario" value="#{meserosController.selected.idhorario}" >
+                            <f:selectItems value="#{horariosController.itemsAvailableSelectOne}"
+                                           var="idhorarioItem"
+                                           itemValue="#{idhorarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMeserosLabel_idmesa}" for="idmesa" />
+                        <p:selectOneMenu id="idmesa" value="#{meserosController.selected.idmesa}" >
+                            <f:selectItems value="#{mesasController.itemsAvailableSelectOne}"
+                                           var="idmesaItem"
+                                           itemValue="#{idmesaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{meserosController.create}" value="#{bundle.Save}" update="display,:MeserosListForm:datalist,:growl" oncomplete="handleSubmit(args,'MeserosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MeserosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

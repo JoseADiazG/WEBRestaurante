@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturasViewDlg" widgetVar="FacturasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturasTitle}">
+            <h:form id="FacturasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idfacturas}"/>
+                        <h:outputText value="#{facturasController.selected.idfacturas}" title="#{bundle.ViewFacturasTitle_idfacturas}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_totalapagar}"/>
+                        <h:outputText value="#{facturasController.selected.totalapagar}" title="#{bundle.ViewFacturasTitle_totalapagar}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idcliente}"/>
+                        <h:outputText value="#{facturasController.selected.idcliente}" title="#{bundle.ViewFacturasTitle_idcliente}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idmesero}"/>
+                        <h:outputText value="#{facturasController.selected.idmesero}" title="#{bundle.ViewFacturasTitle_idmesero}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idpago}"/>
+                        <h:outputText value="#{facturasController.selected.idpago}" title="#{bundle.ViewFacturasTitle_idpago}"/>
+                        <h:outputText value="#{bundle.ViewFacturasLabel_idplatos}"/>
+                        <h:outputText value="#{facturasController.selected.idplatos}" title="#{bundle.ViewFacturasTitle_idplatos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
